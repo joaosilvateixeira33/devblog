@@ -1,0 +1,137 @@
+@import url('header.css');
+@import url('posts.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+
+}
+
+:root{
+    --dark-10: #121214;
+    --dark-20: #17171A;
+    --dark-30: #202024;
+    --dark-40: #252529;
+    --dark-50: #AFABB6;
+    --dark-60: #FFFFFF;
+    --brand-color: #E07B67;
+    --font-titles: "Inter", serif;
+    --font-body: "Space Grotesk", serif;
+}
+
+body{
+    background-color: var(--dark-10);
+    color: var(--dark-60);
+    font-family: var(--font-body);
+}
+
+input[type="text"], textarea, input[type='password']{
+    border: 2px solid var(--dark-40);
+    background-color: var(--dark-30);
+    padding: 10px;
+    width: 30vw;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--dark-60);
+}
+
+input[type="submit"]{
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: var(--brand-color);
+    color: var(--dark-60);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: #bf6b5a;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10% 0;
+    gap: 20px;
+}
+
+.title-create{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-titles);
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label{
+    margin-top: 10px;
+}
+
+textarea{
+    height: 50vh;
+    resize: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: var(--font-titles);
+}
+
+a{
+    color: #FFFFFF;
+    font-size: 1em;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* dasboard */
+.title{
+    font-size: 2rem;
+}
+
+.post-card{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+button[type='submit']{
+    color: #FFFFFF;
+    font-size: 1em;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.limit-one-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;  
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+}
+

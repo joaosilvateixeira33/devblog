@@ -1,0 +1,46 @@
+.posts-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.post-content{
+    border: 2px solid var(--dark-40);
+    background-color: var(--dark-20);
+    padding: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    font-family: var(--font-titles);
+}
+
+.date-post{
+    color: var(--brand-color);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.favorite-icon{
+    width: 20px;
+    position: absolute;
+    left: 72%;
+    cursor: pointer;
+}
+
+.details-post{
+    text-align: justify;
+    font-size: 15px;
+}
+
+.limit-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+}

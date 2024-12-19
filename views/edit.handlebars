@@ -1,0 +1,9 @@
+<form action="/edit/{{post.id}}" method="POST">
+  <label for="title">Título</label>
+  <input type="text" name="title" value="{{post.title}}" required>
+
+  <label for="description">Conteúdo</label>
+  <textarea name="description" required>{{post.description}}</textarea>
+
+  <button type="submit">Salvar</button>
+</form>

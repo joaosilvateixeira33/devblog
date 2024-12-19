@@ -1,0 +1,18 @@
+<section>
+  <h1 class="title">Dashboard</h1>
+  <nav>
+    <a href="/create">Criar post</a>
+    <a href="/">Voltar a home</a>
+  </nav>
+
+  {{#each posts}}
+      <div class="post-card">
+        <h3 class="title-card">{{this.title}}</h3>
+        <h4 class="limit-one-lines">{{this.description}}</h4>
+        <a href="/edit/{{this.id}}">Editar</a>
+        <form action="/delete/{{this.id}}" method="POST" style="display: inline;">
+          <button type="submit">Apagar</button>
+        </form>
+      </div>
+  {{/each}}
+</section>

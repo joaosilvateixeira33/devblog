@@ -1,0 +1,10 @@
+<section class="posts-container">
+    {{#each posts}}
+        <div class="post-content">
+            <span class="date-post">{{formatDate this.createdAt}}</span>
+            <img src="images/icons/favorite.png" alt="icon" class="favorite-icon">
+            <h3 class="title-post">{{this.title}}</h3>
+            <p class="details-post limit-text">{{this.description}}</p>
+        </div>
+    {{/each}}
+</section>
