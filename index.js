@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars');
 const conn = require('./db/conn');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
+const createStandardUser = require('./utils/standardUser');
 
 const app = express();
 const port = 3000;
@@ -33,7 +34,6 @@ app.use(
     })
 )
 
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
@@ -58,6 +58,8 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
+    console.log(username, password);
+
     conn.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
         if (err) {
             console.error(err);
@@ -77,7 +79,10 @@ app.post('/login', (req, res) => {
 
 app.get('/dashboard', checkAuth, (req, res) => {
     conn.query('SELECT * FROM posts', (err, posts) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Erro ao consultar posts:', err);
+            return res.render('dashboard', { error: 'Erro ao carregar posts' });
+        }
         res.render('dashboard', { posts });
     });
 });
@@ -123,24 +128,31 @@ app.get('/create', (req, res) => {
 })
 
 app.post('/create', (req, res) => {
-    const title = req.body.title;
-    const description = req.body.description;
+    const { title, content } = req.body;
+
+    console.log(title, content);
+
+    if (!title || !content) {
+        return res.render('createPost', { error: 'Título e descrição são obrigatórios' });
+    }
 
     const currentDate = new Date();
     const createdAt = currentDate.toISOString().split('T')[0];
 
-    const queryCreate = 'INSERT INTO posts (title, description, createdAt) VALUES (?, ?, ?)';
-    const data = [title, description, createdAt];
+    const queryCreate = 'INSERT INTO posts (title, content, createdAt) VALUES (?, ?, ?)';
+    const data = [title, content, createdAt];
 
     conn.query(queryCreate, data, (err) => {
         if (err) {
-            res.send('Erro ao salvar no banco de dados');
+            console.error('Erro ao salvar no banco de dados:', err);
+            return res.send('Erro ao salvar no banco de dados');
         }
 
         res.redirect('/dashboard');
-    })
-})
+    });
+});
 
 app.listen(port, () => {
     console.log(`server on in http://localhost:${port}`);
+    createStandardUser();
 })
