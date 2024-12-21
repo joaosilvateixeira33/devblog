@@ -14,8 +14,8 @@ const createDefaultUser = async () => {
         if (results.length === 0) {
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            const query = 'INSERT INTO users (username, password, email) VALUES (?, ?, ?)';
-            const data = [username, hashedPassword, email];
+            const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
+            const data = [username, hashedPassword];
 
             conn.query(query, data, (err) => {
                 if (err) {
